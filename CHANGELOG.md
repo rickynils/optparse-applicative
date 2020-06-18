@@ -1,4 +1,4 @@
-## Unreleased
+## Version 0.16.0.0 (20 Jun 2020)
 
 - Add `Options.Applicative.NonEmpty.some1` function, which
   parses options the same as `some1` from base, but doesn't
@@ -17,7 +17,7 @@
 
   The builder `noGlobal` will suppress this for a single
   option, while the entire section can be turned off using
-  `overFailure` to set `helpGlobals` to `mempty`.
+  `helpNoGlobals` preference modifier.
 
   Fixes issues:
     * \# 175 - List detailed subparser documentation with `--help`
@@ -34,6 +34,10 @@
     * \# 379 - cmd --help subcmd is not the same as cmd subcmd --help
 
 - Updated dependency bounds.
+
+- Add builder for the all positional parser policy.
+
+- Delete deprecated functions.
 
 - Add support for GHC 8.10.1 (backported).
 
