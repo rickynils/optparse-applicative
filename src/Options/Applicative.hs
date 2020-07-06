@@ -69,6 +69,7 @@ module Options.Applicative (
   argument,
 
   subparser,
+  subparser',
   hsubparser,
 
   abortOption,

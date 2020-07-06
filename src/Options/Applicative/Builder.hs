@@ -17,6 +17,7 @@ module Options.Applicative.Builder (
   --
   -- creates a parser for an option called \"output\".
   subparser,
+  subparser',
   strArgument,
   argument,
   flag,
@@ -266,12 +267,17 @@ completer f = fieldMod $ modCompleter (`mappend` f)
 
 -- | Builder for a command parser. The 'command' modifier can be used to
 -- specify individual commands.
-subparser :: Mod CommandFields a -> Parser a
-subparser m = mkParser d g rdr
+subparser' :: String -> Mod CommandFields a -> Parser a
+subparser' v m = mkParser d g rdr
   where
-    Mod _ d g = metavar "COMMAND" `mappend` m
+    Mod _ d g = metavar v `mappend` m
     (groupName, cmds, subs) = mkCommand m
     rdr = CmdReader groupName cmds subs
+
+-- | Builder for a command parser. The 'command' modifier can be used to
+-- specify individual commands.
+subparser :: Mod CommandFields a -> Parser a
+subparser = subparser' "COMMAND"
 
 -- | Builder for an argument parser.
 argument :: ReadM a -> Mod ArgumentFields a -> Parser a
